@@ -151,7 +151,6 @@ elif auswahl == 'Bierkonsum pro Jahr nach Festdauer':
     st.plotly_chart(bierkonsum_pro_jahr_nach)
 
 elif auswahl == 'Bierkonsum pro Kopf pro Jahr':
-    # Calculate 'bierkonsum pro kopf' in liters per person
     df["bierkonsum pro kopf"] = (df["bier_konsum"] * 100) / (df["besucher_gesamt"] * 1_000_000)
     
     
