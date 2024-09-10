@@ -18,7 +18,7 @@ def load_data(path):
     df = pd.read_csv(path)
     return df
 
-mpg_df_raw = load_data(path ="/home/constructor/streamlit/my-first-streamlit-app/data/raw/mpg.csv") #for speed
+mpg_df_raw = load_data(path ="./data/raw/mpg.csv") #for speed
 
 mpg_df = deepcopy(mpg_df_raw) #for security
 
