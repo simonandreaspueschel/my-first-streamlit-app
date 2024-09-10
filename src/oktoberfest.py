@@ -174,5 +174,5 @@ elif auswahl == 'Bierkonsum pro Kopf pro Jahr':
     )
     
     
-    st.markdown("**Die Wiesn im vergangenen Jahr waren vergleichsweise unalkoholisch**")
+    st.markdown("**Die Wiesn im vergangenen Jahr war vergleichsweise unalkoholisch**")
     st.plotly_chart(bierkonsum_pro_kopf_pro_jahr)
