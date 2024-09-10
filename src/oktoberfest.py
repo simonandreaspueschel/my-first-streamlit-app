@@ -35,7 +35,8 @@ auswahl = st.radio(
                                                  'Hendlpreis pro Jahr', 
                                                  'Durchschnittliche Besucher pro Fest-Dauer',
                                                    'Hendl-Konsum nach Hendl-Preis',
-                                                     'Bierkonsum pro Jahr nach Festdauer'])
+                                                     'Bierkonsum pro Jahr nach Festdauer', 
+                                                     'Bierkonsum pro Kopf pro Jahr'])
 
 if auswahl == 'Besucher pro Jahr':
     fig_be = px.bar(
@@ -148,3 +149,30 @@ elif auswahl == 'Bierkonsum pro Jahr nach Festdauer':
     )
     st.markdown("**Der Bierkonsum steigt stetig an**")
     st.plotly_chart(bierkonsum_pro_jahr_nach)
+
+elif auswahl == 'Bierkonsum pro Kopf pro Jahr':
+    # Calculate 'bierkonsum pro kopf' in liters per person
+    df["bierkonsum pro kopf"] = (df["bier_konsum"] * 100) / (df["besucher_gesamt"] * 1_000_000)
+    
+    
+    bierkonsum_pro_kopf_pro_jahr = px.line(
+        df, 
+        x='jahr', 
+        y='bierkonsum pro kopf', 
+        title='Bierkonsum pro Kopf über die Jahre',
+        labels={'jahr': 'Jahr', 'bierkonsum pro kopf': 'Bierkonsum pro Kopf (Liter)'},
+        markers=True  
+    )
+    
+    
+    bierkonsum_pro_kopf_pro_jahr.update_layout(
+        height=600, 
+        width=800,
+        xaxis_title='Jahr',
+        yaxis_title='Bierkonsum pro Kopf (Liter)',
+        title={'y':0.95, 'x':0.5, 'xanchor': 'center', 'yanchor': 'top'}  # Center the title
+    )
+    
+    
+    st.markdown("**Die Wiesn im vergangenen Jahr waren vergleichsweise unalkoholisch**")
+    st.plotly_chart(bierkonsum_pro_kopf_pro_jahr)
